@@ -10,7 +10,7 @@ namespace TestApp.Services
 {
     public class dataBaseHelper
     {
-        public static DataTable ExecuteStoredProcedure(string procedureName, Dictionary<string, object> parameters)
+        public DataTable ExecuteStoredProcedure(string procedureName, Dictionary<string, object> parameters)
         {
             // Define your connection string
             string connectionString = "YourConnectionStringHere";
@@ -49,7 +49,7 @@ namespace TestApp.Services
             return dt;
         }
 
-        public static DataTable ExecuteStoredProcedureNoInput(string procedureName)
+        public DataTable ExecuteStoredProcedureNoInput(string procedureName)
         {
 
             string connectionString = "YourConnectionStringHere";
