@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
-using System.Collections;
+using System.Collections
 using Newtonsoft.Json;
 
 class Program
