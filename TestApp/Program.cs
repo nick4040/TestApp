@@ -12,23 +12,31 @@ using Newtonsoft.Json;
 
 class Program
 {
-    static async Task Main(string[] args)
+     async Task Main(string[] args)
     {
 
-        /*string authKey = "";
+        string authKey = "";
         string authToken = "";
+        string Url = "https://665898a25c361705264923dc.mockapi.io/test/api/Customer";
 
         string EmployeeNumber = TestApp.Services.Utilitys.GetEmployeeNumber();
 
-        var AuthKeyToken = GetAuthTokenAndKey(EmployeeNumber);
+        var AuthKeyToken = TestApp.Services.Utilitys.GetAuthTokenAndKey(EmployeeNumber);
 
         authToken = AuthKeyToken.Item1;
         authKey = AuthKeyToken.Item2;
         
-        var Customer = await GetCustomerData("https://665898a25c361705264923dc.mockapi.io/test/api/Customer", authToken, authKey, EmployeeNumber);
+        var TermCustomer = await TestApp.Services.CustomerDataHandler.GetCustomerData(Url, string EmployeeNumber);
 
-        var cleanCustomerData = FilterCustomerData(Customer);
-        */
+        var cleanCustomerData = TestApp.Services.CustomerDataHandler.FilterCustomerData(TermCustomer);
+
+        string CustomerNumber = cleanCustomerData.Item1;
+        string ScheduledDate = cleanCustomerData.Item2;
+
+        var PestCustomer = await TestApp.Services.CustomerDataHandler.GetPestRoutesCustomerData(Url, )
+
+
+
     }
 
 
