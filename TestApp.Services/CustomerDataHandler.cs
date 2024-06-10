@@ -68,42 +68,12 @@ namespace TestApp.Services
                 {"CustomerNumber", CustomerNumber}
             };
 
+            //searches to see if the customer already exists 
             var CustomerData = TestApp.Services.ApiMethods.PostAsync(parameters1, Url, AuthToken, AuthKey);
-            if (CustomerData.Length > 0)
-            {
-                CreateNewCustomer(CustomerData)
-            }
 
             return CustomerData;
+            
         }
 
-        public async Task<string> CreateNewCustomer(String CustomerData) 
-        {
-
-            string Url = "";
-            string authKey = "";
-            string authToken = "";
-
-            var PestCustomerData = JsonConvert.DeserializeObject<TestApp.Common.Constants.CustomerData>(CustomerData);
-
-            var parameters1 = new Dictionary<string, object>
-            {
-                {"Branch", "AF" }
-                {"CustomerAddress", PestCustomerData.Address }
-                {"CustomerCity", PestCustomerData.City }
-                {"CustomerEmail", PestCustomerData.Email }
-                {"CustomerId", PestCustomerData.CustomerId }
-                {"CustomerName", PestCustomerData.FirstName}//also add last name
-                {"CustomerPhone1", PestCustomerData.PhoneNumber }
-                {"CustomerPhone2", "" }
-                {"CustomerState", PestCustomerData.State }
-                {"CustomerStatus", "Act" }
-                {"CustomerZipCode", PestCustomerData.PostalCode }
-            }
-
-            var CreateCustomerResponse = await TestApp.Services.ApiMethods.PostAsync(parameters1, Url, authToken, authKey);
-        }
-
-        public 
     }
 }

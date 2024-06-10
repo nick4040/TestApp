@@ -33,9 +33,17 @@ class Program
         string CustomerNumber = cleanCustomerData.Item1;
         string ScheduledDate = cleanCustomerData.Item2;
 
-        var PestCustomer = await TestApp.Services.CustomerDataHandler.GetPestRoutesCustomerData(Url, )
+        var PestCustomer = await TestApp.Services.CustomerDataHandler.GetPestRoutesCustomerData(CustomerNumber);
 
+        if (PestCustomer.Length > 0)
+        {
+            //true
 
+        } else
+        {
+            //false
+            var NewPestVustomer = TestApp.Services.NewCustomerHandler.CreateNewCustomer(PestCustomer);
+        }
 
     }
 
