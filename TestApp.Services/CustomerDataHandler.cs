@@ -52,16 +52,14 @@ namespace TestApp.Services
 
             string url = "";
 
-            var CustomerData = TestApp.Services.ApiMethods.PostAsync(parameters1, url, terminixToken, terminixKey);//Post the parameter to the url 
-
+            var CustomerData = TestApp.Services.ApiMethods.PostAsync(parameters1, url);//Post the parameter to the url 
+            // need to make another method to take terminix token and key
             return CustomerData;//return response 
         }
 
         public async Task<string> GetPestRoutesCustomerData(string CustomerNumber)
         {
             string Url = "";
-            string authKey = "";
-            string authToken = "";
 
             var parameters1 = new Dictionary<string, object>
             {
@@ -69,11 +67,40 @@ namespace TestApp.Services
             };
 
             //searches to see if the customer already exists 
-            var CustomerData = TestApp.Services.ApiMethods.PostAsync(parameters1, Url, AuthToken, AuthKey);
+            var CustomerData = TestApp.Services.ApiMethods.PostAsync(parameters1, Url);
 
+            //returns json data not mapped data
             return CustomerData;
             
         }
 
+        public string DoesCustomerHaveAppointmentData(string CustomerData)
+        {
+            var PestCustomerData = JsonConvert.DeserializeObject<TestApp.Common.Constants.CustomerData>(CustomerData);
+
+            TestApp.Services.NewCustomerHandler.PRcustomerID = PestCustomerData.CustomerId;
+
+            string results = "";
+
+            if (PestCustomerData.AppointmentIDs.Equals(null))
+            {
+                return results = "0";
+            }
+            return results = "1";
+        }
+
+        public string CheckIfCustomerExistsDB(string CustomerData)
+        {
+
+            var PestCustomerData = JsonConvert.DeserializeObject<TestApp.Common.Constants.CustomerData>(CustomerData);
+
+            var parameters1 = new Dictionary<string, object>
+            {
+                {"CustomerNumber", PestCustomerData.CustomerId }
+            }
+
+            // we will check if the customer exists in the DB if customer exists return 1 if not return 0 
+
+        }
     }
 }

@@ -8,11 +8,17 @@ namespace TestApp.Services
 {
     public class ApiMethods
     {
-       public static async Task<string> PostAsync(Dictionary<string, object> parameters, string url, string token, string key)
+        
+
+       public static async Task<string> PostAsync(Dictionary<string, object> parameters, string url)
         {
+
+            string AuthKey = TestApp.Common.Constants.AuthKey;
+            string AuthToken = TestApp.Common.Constants.AuthToken;
+
             using HttpClient httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            httpClient.DefaultRequestHeaders.Add("apikey", key);
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AuthToken);
+            httpClient.DefaultRequestHeaders.Add("apikey", AuthKey);
 
             string json = System.Text.Json.JsonSerializer.Serialize(parameters);
             using StringContent jsonContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -27,11 +33,15 @@ namespace TestApp.Services
         }
 
 
-        public static async Task<string> GetAsync(string token, string key, string apiUrl)
+        public static async Task<string> GetAsync(string apiUrl)
         {
+
+            string AuthKey = TestApp.Common.Constants.AuthKey;
+            string AuthToken = TestApp.Common.Constants.AuthToken;
+
             using HttpClient httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            httpClient.DefaultRequestHeaders.Add("apikey", key);
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AuthToken);
+            httpClient.DefaultRequestHeaders.Add("apikey", AuthKey);
 
             using HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
 

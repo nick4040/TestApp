@@ -18,6 +18,12 @@ namespace TestApp.Services
             return MissionEmployeeNumber;
         }
 
+        public string GetEmployeeData(string CustomerData)
+        {
+            var PestEmployeeData = JsonConvert.DeserializeObject<TestApp.Common.Constants.EmployeeData>(CustomerData);
+            return PestEmployeeData;
+        }
+
         public Tuple<string, string> GetAuthTokenAndKey(string MissionEmployeeNumber)
         {
 

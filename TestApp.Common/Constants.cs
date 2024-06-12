@@ -7,8 +7,12 @@
         public const string terminixToken = "";
         public const string terminixKey = "";
 
+        public string AuthKey = "";
+        public string AuthToken = "";
+
         //Genral constants
         public const string scheduledDate = "01/01/2000";
+
 
     }
 
